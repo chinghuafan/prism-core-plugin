@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "prism-core": {
+      "type": "streamable-http",
+      "url": "https://prism.stratixsoft.com/mcp/rpc",
+      "httpUrl": "https://prism.stratixsoft.com/mcp/rpc",
+      "description": "PRISM Core™ Cloud Shared Mental Model & Decision State Machine"
+    }
+  }
+}

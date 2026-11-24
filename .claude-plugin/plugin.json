@@ -1,0 +1,15 @@
+{
+  "name": "prism-core-plugin",
+  "version": "1.0.0",
+  "description": "PRISM Core™ Shared Mental Model & Decision Control OS — Cross-AI consensus, trade-off governance, None != 0 epistemic honesty, and redline verification.",
+  "author": {
+    "name": "StratixSoft Co., Ltd.",
+    "url": "https://stratixsoft.com",
+    "email": "phil.fan@stratixsoft.com"
+  },
+  "homepage": "https://stratixsoft.com",
+  "repository": "https://github.com/chinghuafan/prism-core-plugin",
+  "license": "MIT",
+  "mcpServers": "./.mcp.json",
+  "skills": "./skills/"
+}

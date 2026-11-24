@@ -1,0 +1,17 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "prism-core-plugin",
+  "version": "1.0.0",
+  "author": {
+    "name": "StratixSoft Co., Ltd. (愛因創新股份有限公司)",
+    "url": "https://stratixsoft.com",
+    "email": "phil.fan@stratixsoft.com"
+  },
+  "homepage": "https://stratixsoft.com",
+  "description": "PRISM Core™ Shared Mental Model & Decision Control OS — Cross-AI consensus, trade-off governance, stage-bound reference documents, and redline verification for ChatGPT, Claude, Gemini, Cursor, and Antigravity.",
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/setup/SKILL.md"
+    }
+  }
+}

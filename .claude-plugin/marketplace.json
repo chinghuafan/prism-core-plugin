@@ -1,0 +1,33 @@
+{
+  "name": "prism-core-marketplace",
+  "owner": {
+    "name": "StratixSoft Co., Ltd.",
+    "email": "phil.fan@stratixsoft.com"
+  },
+  "metadata": {
+    "description": "Official PRISM Core™ Cross-AI Shared Decision Control OS plugin marketplace.",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "prism-core-plugin",
+      "source": "./",
+      "description": "PRISM Core™ Shared Mental Model & Decision Control OS — Explainable LMIT geometric decision space, None != 0 epistemic honesty, cross-AI handoff, and redline verification.",
+      "version": "1.0.0",
+      "author": {
+        "name": "StratixSoft Co., Ltd.",
+        "email": "phil.fan@stratixsoft.com"
+      },
+      "homepage": "https://stratixsoft.com",
+      "repository": "https://github.com/chinghuafan/prism-core-plugin",
+      "license": "MIT",
+      "keywords": [
+        "prism-core",
+        "decision-os",
+        "mcp",
+        "cross-ai",
+        "redline-audit"
+      ]
+    }
+  ]
+}

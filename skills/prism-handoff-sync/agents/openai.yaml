@@ -1,0 +1,13 @@
+interface:
+  display_name: "PRISM Cross-AI Handoff & Pipeline Sync"
+  short_description: "Zero-copy-paste project continuity across ChatGPT, Claude, Gemini, and Cursor"
+  default_prompt: "Sync the latest project state and my assigned stage from PRISM Core."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "prism-core"
+      description: "PRISM Core™ Shared Mental Model & Decision State Machine"
+      transport: "streamable_http"
+      url: "https://prism.stratixsoft.com/mcp/rpc"

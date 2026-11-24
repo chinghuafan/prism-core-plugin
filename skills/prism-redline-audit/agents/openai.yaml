@@ -1,0 +1,13 @@
+interface:
+  display_name: "PRISM Redline & Compliance Audit"
+  short_description: "Verify proposals, drafts, and replies against locked redlines and epistemic honesty"
+  default_prompt: "Audit this draft against our active PRISM redlines and reference rules."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: "mcp"
+      value: "prism-core"
+      description: "PRISM Core™ Shared Mental Model & Decision State Machine"
+      transport: "streamable_http"
+      url: "https://prism.stratixsoft.com/mcp/rpc"
