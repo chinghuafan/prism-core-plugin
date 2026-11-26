@@ -59,6 +59,9 @@ Guide the user through structured, redline-governed decision making inside their
      ```
    - Use Mermaid diagrams only in chat UIs that render them (never dump raw diagram/HTML walls into terminal CLIs).
    - **Interactive HTML Enhancement (Supported UIs Only)**: In clients with native HTML widget / artifact rendering (e.g. Antigravity interactive HTML or Claude Artifacts), you MAY additionally render a compact interactive HTML panel showing the 3 strategy cards and draggable 240/130-conserving sliders that generate a copyable next-round prompt. In terminal CLIs (e.g. Codex CLI, Gemini CLI), NEVER output raw HTML source code—stick to Rich Markdown.
+   - **Visual Decision Chain (Multi-Round & Sub-Decision Evolution)**: Whenever the decision evolves across rounds (e.g. new facts, lever shifts, or strategy pivots) or forks into a child decision space, include a compact **決策演化鏈 (Decision Chain)** showing `R1 → (+事實/拉桿調整) → R2/R3 → 子決策空間` and why the recommendation changed:
+     - In chat UIs supporting Mermaid or interactive HTML (e.g. Antigravity, ChatGPT, Claude): render a `flowchart LR` Mermaid diagram (or an interactive HTML node chain).
+     - In terminal CLIs (e.g. Codex CLI, Gemini CLI): fall back to a concise **ASCII causal timeline** (`[R1: A] --(+限制)--> [R2: A(縮)] --(+合夥人/拉桿)--> [R3: B] ==> [子空間: B]`), never raw HTML.
 
 5. **Verify Before Finalizing & Action Summary Footer**:
    - Before delivering a final strategy or recommendation, call `prism_verify_output` (passing a compact structured draft) and ensure `passed=true`.
