@@ -36,9 +36,10 @@ Guide the user through structured, redline-governed decision making inside their
      - **現況難易度與依據**（可行／有條件可行／現階段不可行／無法判定 ＋ 具體依據）
      - **關鍵未知與需補齊資料**
    - State the **目前暫定推薦（Provisional Pick）** and which known fact or assumption puts it first (or mark `條件式／待確認` if tied), followed by at most **1–2 high-value follow-up questions** and a plain-language **🎛️ 策略拉桿（Strategy Levers · 總和 240 點守恆）** block at the bottom:
+     - **Dynamic Domain-Specific Lever Labels (Never Hardcode)**: Read the 2 axis names, 4 pole labels (`L`/`M`/`I`/`T`), and current points from PRISM's `strategy_levers` (or `field_coverage_map` + current problem domain) and condense them into crisp 2–6 word labels that fit the user's exact topic (never reuse generic/example labels like `守成保本/破局擴張` or `理念品牌/落地實證` across unrelated topics).
      - **240 / 130 Conservation Rule**: Display the 4 endpoints in **points (0–100 each)**, strictly obeying **total ≤ 240 pts** across all 4 endpoints and **same-axis pair ≤ 130 pts** (never both ends maxed out, never all zeros):
-       - **風險與動能桿**（同軸合計 ≤ 130）：`守成保本 <p1> 點 ◀──●──▶ 破局擴張 <p2> 點`
-       - **價值與實證桿**（同軸合計 ≤ 130）：`理念品牌 <p3> 點 ◀──●──▶ 落地實證 <p4> 點`
+       - **<軸1名稱>**（同軸合計 ≤ 130）：`<L端動態標籤> <p1> 點 ◀──●──▶ <M端動態標籤> <p2> 點`
+       - **<軸2名稱>**（同軸合計 ≤ 130）：`<I端動態標籤> <p3> 點 ◀──●──▶ <T端動態標籤> <p4> 點`
        - Show total used (`<p1+p2+p3+p4> / 240 點`) and never expose raw internal tokens.
      - Invite the user to adjust either lever in plain words alongside answering questions (and include `hud_url` if returned so they know they can also inspect it visually).
 
@@ -52,10 +53,10 @@ Guide the user through structured, redline-governed decision making inside their
    - Record unapproved KPIs or specs via `relation="propose"` (or `prism_propose_decision`), never as settled `supplement`.
 
 4. **Visual Output Formatting (Rich Markdown Default + Optional Interactive HTML)**:
-   - **Universal Default (CLI / Web / Chat)**: Always present the 3 strategies in a scannable **Markdown comparison table** with status badges (`🟢 可行` / `🟡 有條件` / `🔴 現階段暫緩`) and render the **🎛️ 策略拉桿** using visual block progress bars so the user sees the 240/130 balance at a glance:
+   - **Universal Default (CLI / Web / Chat)**: Always present the 3 strategies in a scannable **Markdown comparison table** with status badges (`🟢 可行` / `🟡 有條件` / `🔴 現階段暫緩`) and render the **🎛️ 策略拉桿** using visual block progress bars with the current topic's dynamic axis/pole labels so the user sees the 240/130 balance at a glance:
      ```text
-     風險與動能桿（<p1+p2>/130）：守成保本 <p1> [███░░░░░█████████] <p2> 破局擴張
-     價值與實證桿（<p3+p4>/130）：理念品牌 <p3> [████████░░░░░████] <p4> 落地實證
+     <軸1名稱>（<p1+p2>/130）：<L端動態標籤> <p1> [███░░░░░█████████] <p2> <M端動態標籤>
+     <軸2名稱>（<p3+p4>/130）：<I端動態標籤> <p3> [████████░░░░░████] <p4> <T端動態標籤>
      ```
    - Use Mermaid diagrams only in chat UIs that render them (never dump raw diagram/HTML walls into terminal CLIs).
    - **Interactive HTML Enhancement (Supported UIs Only)**: In clients with native HTML widget / artifact rendering (e.g. Antigravity interactive HTML or Claude Artifacts), you MAY additionally render a compact interactive HTML panel showing the 3 strategy cards and draggable 240/130-conserving sliders that generate a copyable next-round prompt. In terminal CLIs (e.g. Codex CLI, Gemini CLI), NEVER output raw HTML source code—stick to Rich Markdown.
