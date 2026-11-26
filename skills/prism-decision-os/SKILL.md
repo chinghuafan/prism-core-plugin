@@ -34,14 +34,17 @@ Guide the user through structured, redline-governed decision making inside their
      - **策略特色與核心取捨**
      - **現況難易度與依據**（可行／有條件可行／現階段不可行／無法判定 ＋ 具體依據）
      - **關鍵未知與需補齊資料**
-   - State the **目前暫定推薦（Provisional Pick）** and which known fact or assumption puts it first (or mark `條件式／待確認` if tied), followed by at most **1–2 high-value follow-up questions** and a plain-language **🎛️ 策略拉桿（Strategy Levers）** block at the bottom:
-     - **風險與動能桿**：`[守成保本 ◀──●──▶ 破局擴張]` (show current balance in plain percentages or points, never raw engine tokens)
-     - **價值與實證桿**：`[理念品牌 ◀──●──▶ 落地實證]` (show current balance)
+   - State the **目前暫定推薦（Provisional Pick）** and which known fact or assumption puts it first (or mark `條件式／待確認` if tied), followed by at most **1–2 high-value follow-up questions** and a plain-language **🎛️ 策略拉桿（Strategy Levers · 總和 240 點守恆）** block at the bottom:
+     - **240 / 130 Conservation Rule**: Display the 4 endpoints in **points (0–100 each)**, strictly obeying **total ≤ 240 pts** across all 4 endpoints and **same-axis pair ≤ 130 pts** (never both ends maxed out, never all zeros):
+       - **風險與動能桿**（同軸合計 ≤ 130）：`守成保本 <p1> 點 ◀──●──▶ 破局擴張 <p2> 點`
+       - **價值與實證桿**（同軸合計 ≤ 130）：`理念品牌 <p3> 點 ◀──●──▶ 落地實證 <p4> 點`
+       - Show total used (`<p1+p2+p3+p4> / 240 點`) and never expose raw internal tokens.
      - Invite the user to adjust either lever in plain words alongside answering questions (and include `hud_url` if returned so they know they can also inspect it visually).
 
 3. **Next-Round Fact Injection, Lever Evolution & Deterministic Re-Selection (`Delta`)**:
    - When the user adjusts the Strategy Levers and/or provides new facts, constraints, or preferences in the next round:
-     - Translate any lever adjustment into `emotional_override` (`{'L': 0..1, 'M': 0..1, 'I': 0..1, 'T': 0..1}`) and new facts into `observation_events` (`supplement`, `supersede`, `contradict`, or `confirmed_gaps`, setting `premise_invalidated=true` if an earlier premise is overturned), then call `prism_inject_observation` and re-read the updated `state_version`.
+     - **Enforce 240 / 130 Budget**: If the user tries to max out opposing poles (`> 130` on one axis) or exceed `240` total (or zero out all poles), explicitly explain the trade-off constraint and proportionally rebalance/compress (or keep a minimum non-zero floor) so `sum <= 240` and `axis_pair <= 130` before computing.
+     - Translate the valid lever points into `emotional_override` (`pole_points / 100.0` in `0..1`) and new facts into `observation_events` (`supplement`, `supersede`, `contradict`, or `confirmed_gaps`, setting `premise_invalidated=true` if an earlier premise is overturned), then call `prism_inject_observation` and re-read the updated `state_version`.
      - **Fail-Closed Fallback**: If writing to PRISM fails, retain the previous lever weights and recommendation and explicitly state that PRISM has NOT been updated—never claim it was recalculated.
    - Re-evaluate feasible strategies and apply a fixed selection policy: (1) eliminate any hard-invariant violator, (2) rank by human-confirmed goal priority, lever orientation, and evidence support, (3) rank by confirmed resource feasibility; if tied or subjective, mark `待人類選擇` (never invent arbitrary numeric weights).
    - Lead the reply with a clear **Delta**: `拉桿位移` + `新增事實` + `被推翻的前提` ➔ `原推薦 X ➔ 現推薦 Y（或維持 X）` + `改選／維持理由` + `仍待確認事項`, and show the updated **🎛️ 策略拉桿** state.
