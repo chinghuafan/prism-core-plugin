@@ -70,4 +70,4 @@ Guide the user through structured, redline-governed decision making inside their
    - If `passed=false` (`status="VIOLATION"`), revise per `escape_correction_directive`, re-verify, and transparently disclose what triggered the violation and how it was adjusted.
    - If `uncovered_dimension_detected=true`, follow `recommended_next_action` (`prism_inject_observation` with `auto_expand=true`) and re-verify.
    - Never expose raw internal engine tokens (`obs_*`, `gap_*`, `K₂`, `LMIT`) in user-facing summaries.
-   - **Mandatory Action Summary Footer**: Whenever you execute ANY PRISM tool, append a concise **`📋 PRISM 本次工作摘要`** block at the end of your reply.
+   - **Mandatory Action Summary Footer**: Whenever you execute ANY PRISM tool, append a concise **`📋 PRISM 本次工作摘要`** block at the end of your reply, including the PRISM `engine_version` (e.g., `v2.6.0-20261126`) so the user can see which version handled the turn.
