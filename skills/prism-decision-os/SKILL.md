@@ -51,7 +51,16 @@ Guide the user through structured, redline-governed decision making inside their
    - Lead the reply with a clear **Delta**: `拉桿位移` + `新增事實` + `被推翻的前提` ➔ `原推薦 X ➔ 現推薦 Y（或維持 X）` + `改選／維持理由` + `仍待確認事項`, and show the updated **🎛️ 策略拉桿** state.
    - Record unapproved KPIs or specs via `relation="propose"` (or `prism_propose_decision`), never as settled `supplement`.
 
-4. **Verify Before Finalizing & Action Summary Footer**:
+4. **Visual Output Formatting (Rich Markdown Default + Optional Interactive HTML)**:
+   - **Universal Default (CLI / Web / Chat)**: Always present the 3 strategies in a scannable **Markdown comparison table** with status badges (`🟢 可行` / `🟡 有條件` / `🔴 現階段暫緩`) and render the **🎛️ 策略拉桿** using visual block progress bars so the user sees the 240/130 balance at a glance:
+     ```text
+     風險與動能桿（<p1+p2>/130）：守成保本 <p1> [███░░░░░█████████] <p2> 破局擴張
+     價值與實證桿（<p3+p4>/130）：理念品牌 <p3> [████████░░░░░████] <p4> 落地實證
+     ```
+   - Use Mermaid diagrams only in chat UIs that render them (never dump raw diagram/HTML walls into terminal CLIs).
+   - **Interactive HTML Enhancement (Supported UIs Only)**: In clients with native HTML widget / artifact rendering (e.g. Antigravity interactive HTML or Claude Artifacts), you MAY additionally render a compact interactive HTML panel showing the 3 strategy cards and draggable 240/130-conserving sliders that generate a copyable next-round prompt. In terminal CLIs (e.g. Codex CLI, Gemini CLI), NEVER output raw HTML source code—stick to Rich Markdown.
+
+5. **Verify Before Finalizing & Action Summary Footer**:
    - Before delivering a final strategy or recommendation, call `prism_verify_output` (passing a compact structured draft) and ensure `passed=true`.
    - If `passed=false` (`status="VIOLATION"`), revise per `escape_correction_directive`, re-verify, and transparently disclose what triggered the violation and how it was adjusted.
    - If `uncovered_dimension_detected=true`, follow `recommended_next_action` (`prism_inject_observation` with `auto_expand=true`) and re-verify.
