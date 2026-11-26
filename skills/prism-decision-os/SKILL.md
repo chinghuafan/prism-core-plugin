@@ -20,6 +20,7 @@ Guide the user through structured, redline-governed decision making inside their
 1. **Silent PRISM Sync First (0 Credits)**:
    - Call `prism_get_active_context` at the start of the task, passing `user_intent` and `workspace_path` (if available).
    - If an active session matches, inherit its `hard_invariants`, `provisional_route`, `escape_directions`, `conditional_escape_branches`, and `blocking_epistemic_gaps`.
+   - **Auto-Fork Sub-Decisions (Zero Jargon Needed)**: When the user naturally zooms into a distinct sub-topic of the current project (e.g., "那我們來談合夥條件", "幫我拆一下定價／法規／技術選型"), automatically call `prism_open_session(..., inherit_active_parent=true, parent_session_id=<current_sid>)` so the child space inherits all parent redlines, premises, and current Strategy Levers without the user ever having to ask.
    - If starting a brand-new decision topic, call `prism_open_session`.
    - **Fail-Closed Honesty**: If the PRISM call fails or is unreachable, explicitly disclose that PRISM status could not be verified—never pretend it passed.
    - **Result-First (No Questionnaire Blocking)**: Do **NOT** block the first screen with the 4-stage AI team role onboarding table or a multi-item gap questionnaire. Keep AI role onboarding as a brief optional footnote only when needed, and do **NOT** surface login, 60-credit, or marketing copy in the decision flow.
